@@ -1,0 +1,42 @@
+//Napisati funkciju koja vraća niz int vrijednosti veličine n u kojem je svaki
+//element zbroj svoja dva prethodnika (Fibonacci). Prvi i drugi element u nizu
+//su jedinice. U main funkciji ispisati dobiveni niz i osloboditi memoriju.
+
+#include <iostream>
+using namespace std;
+
+int* fibonacci(int& n) {
+
+  //prva dva elementa postavlja na 1
+  int*  fniz = new int[n]{1, 1};
+
+    // racuna ostale dijelove niza
+    for (int j = 2; j < n; j++)
+      fniz[j] = fniz[j - 1] + fniz[j - 2];
+      //cout << fniz[j] << ' ';
+
+    //ispisuje niz
+    for (int i = 0; i < n; i++)
+      cout << fniz[i] << ' ';
+
+    return fniz;
+}
+
+int main()
+{
+  int n;
+  cout << "Unesi veličinu zeljenog niza:" << endl;
+  cin >> n;
+  
+  cout << endl;
+
+  cout << "Tvoj Fibonacci niz:" << endl;
+  //poziv funkcije
+  int *niz=fibonacci(n);
+  
+  //memorija
+  delete[] niz;
+  niz = nullptr;
+
+  return 0;
+}
